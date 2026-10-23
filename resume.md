@@ -3,7 +3,7 @@
 **Location:** Chennai, India  
 **Phone:** +91 7358183683  
 **Email:** kavyasakthivel3@gmail.com  
-**LinkedIn:** [LinkedIn Profile](#)
+**LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/kavya-sakthivel-648738128/)
 
 ---
 

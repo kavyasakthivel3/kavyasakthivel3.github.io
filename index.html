@@ -159,21 +159,6 @@
       border-radius: var(--radius-sm);
     }
 
-    /* Utility: hidden visually, still announced by screen readers.
-       Reused by the metrics/service headings in Steps 4-7. */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      border: 0;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
 
@@ -303,6 +288,20 @@
     @media (min-width: 768px) {
       .nav-links {
         display: flex;
+      }
+    }
+
+    /* Below the nav breakpoint the pill would otherwise run edge to edge.
+       Inset it and trim its height so the monogram + CTA read as a bar
+       rather than a full-width slab. */
+    @media (max-width: 767px) {
+      .site-header {
+        margin-inline: 1rem;
+      }
+
+      .site-nav {
+        min-height: 3.25rem;
+        padding-inline: 1.15rem;
       }
     }
 
@@ -522,62 +521,6 @@
       font-weight: 500;
       transition: transform var(--transition), border-color var(--transition),
                   background-color var(--transition), color var(--transition);
-    }
-
-    /* ==========================================================================
-       11. Metrics band (Step 4)
-           Markup contract for the Step-9 count-up:
-             .metric-value[data-target]  -> source of the final number
-             .metric-number              -> the only node JS rewrites
-             .metric-suffix              -> never touched, so "+/% " survives
-       ========================================================================== */
-    .metrics {
-      padding-block: clamp(1.25rem, 1rem + 2vw, 2.5rem) var(--section-y);
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .metrics-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .metric-card {
-      padding: 1.75rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background-color: var(--surface-glass);
-      -webkit-backdrop-filter: blur(24px);
-      backdrop-filter: blur(24px);
-      box-shadow: var(--border-highlight), var(--shadow);
-      text-align: center;
-    }
-
-    .metric-value {
-      margin: 0 0 0.35rem;
-      font-size: clamp(2rem, 1.5rem + 2.5vw, 2.75rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--accent);
-      font-variant-numeric: tabular-nums;
-      transition: color var(--transition);
-    }
-
-    .metric-suffix {
-      font-size: 0.8em;
-    }
-
-    .metric-label {
-      margin: 0;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-muted);
     }
 
     /* ==========================================================================
@@ -1013,7 +956,6 @@
     }
 
     /* --- Interactive lifts ------------------------------------------------- */
-    .metric-card,
     .education-card {
       transform: perspective(1000px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(var(--lift, 0px));
       transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow var(--transition),
@@ -1021,7 +963,6 @@
       will-change: transform;
     }
 
-    .metric-card:hover,
     .education-card:hover {
       --lift: -5px;
       border-color: var(--accent);
@@ -1168,11 +1109,6 @@
       color: var(--accent);
     }
 
-    /* --- Metric numeral deepens as its card lifts ------------------------- */
-    .metric-card:hover .metric-value {
-      color: var(--accent-strong);
-    }
-
     /* --- Timeline row hover: dot fills and swells, bullets brighten ------- */
     .timeline-item:hover::after {
       transform: translateX(-50%) scale(1.18);
@@ -1289,8 +1225,8 @@
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <main id="main" class="container">
-    <!-- All five sections are present as of Step 7:
-         #about, #metrics, #experience, #skills, #education -->
+    <!-- All four sections are present as of Step 7:
+         #about, #experience, #skills, #education -->
     <section id="about" class="hero" aria-labelledby="hero-name">
       <div class="hero-photo">
         <img src="profile.jpeg" alt="Portrait of Kavya Sakthivel" width="896" height="896" fetchpriority="high">
@@ -1310,8 +1246,8 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:kavyasakthivel3@gmail.com">Email me</a>
-          <!-- COPY: resume.md lists LinkedIn as "#" — supply the real profile URL -->
-          <a class="btn btn-ghost" href="#" data-placeholder="linkedin">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/kavya-sakthivel-648738128/"
+             target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
 
         <ul class="hero-badges">
@@ -1320,36 +1256,6 @@
           <li class="badge">HR Automation</li>
         </ul>
       </div>
-    </section>
-
-    <section id="metrics" class="metrics" aria-labelledby="metrics-title">
-      <h2 id="metrics-title" class="visually-hidden">Career highlights</h2>
-
-      <ul class="metrics-grid">
-        <li class="metric-card">
-          <!-- "over 3+ years" — resume.md professional summary -->
-          <p class="metric-value" data-target="3">
-            <span class="metric-number">3</span><span class="metric-suffix">+</span>
-          </p>
-          <p class="metric-label">Years managing the employee life cycle</p>
-        </li>
-
-        <li class="metric-card">
-          <!-- "closing 88% of job openings for the critical Technical Support Role within one month" -->
-          <p class="metric-value" data-target="88">
-            <span class="metric-number">88</span><span class="metric-suffix">%</span>
-          </p>
-          <p class="metric-label">Technical Support roles filled within a month</p>
-        </li>
-
-        <li class="metric-card">
-          <!-- "closing candidates with a 93% offer acceptance rate" -->
-          <p class="metric-value" data-target="93">
-            <span class="metric-number">93</span><span class="metric-suffix">%</span>
-          </p>
-          <p class="metric-label">Offer acceptance rate</p>
-        </li>
-      </ul>
     </section>
 
     <section id="experience" class="section" aria-labelledby="experience-title">
@@ -1545,8 +1451,8 @@
 
       <ul class="footer-links">
         <li><a href="mailto:kavyasakthivel3@gmail.com">Email</a></li>
-        <!-- COPY: resume.md lists LinkedIn as "#" — supply the real profile URL -->
-        <li><a href="#" data-placeholder="linkedin">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/kavya-sakthivel-648738128/"
+               target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
     </div>
   </footer>
@@ -1565,73 +1471,7 @@
       }
 
       /* ==================================================================
-         1. Metric count-up
-         Contract fixed in Step 4:
-           .metric-value[data-target] -> source of the final number
-           .metric-number             -> the ONLY node rewritten here
-           .metric-suffix             -> never referenced, so "+" and "%"
-                                         always survive the animation.
-         ================================================================== */
-      var metrics = document.querySelectorAll('.metric-value[data-target]');
-
-      function finalValue(el) {
-        var number = el.querySelector('.metric-number');
-        var target = parseInt(el.getAttribute('data-target'), 10);
-        if (number && !isNaN(target)) {
-          number.textContent = String(target);
-        }
-      }
-
-      function countUp(el) {
-        var number = el.querySelector('.metric-number');
-        var target = parseInt(el.getAttribute('data-target'), 10);
-        if (!number || isNaN(target)) {
-          return;
-        }
-
-        var DURATION = 1100;
-        var started = null;
-
-        function frame(now) {
-          if (started === null) {
-            started = now;
-          }
-          var progress = Math.min((now - started) / DURATION, 1);
-          var eased = 1 - Math.pow(1 - progress, 3); /* easeOutCubic */
-          number.textContent = String(Math.round(target * eased));
-          if (progress < 1) {
-            window.requestAnimationFrame(frame);
-          } else {
-            number.textContent = String(target); /* land on the exact value */
-          }
-        }
-
-        window.requestAnimationFrame(frame);
-      }
-
-      if (metrics.length) {
-        if (prefersReduce || !supportsIO || !window.requestAnimationFrame) {
-          each(metrics, finalValue);
-        } else {
-          window.setTimeout(function () {
-            var metricObserver = new IntersectionObserver(function (entries) {
-              entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                  countUp(entry.target);
-                  metricObserver.unobserve(entry.target); /* once only */
-                }
-              });
-            }, { threshold: 0.4 });
-
-            each(metrics, function (el) {
-              metricObserver.observe(el);
-            });
-          }, 2100);
-        }
-      }
-
-      /* ==================================================================
-         2. Nav scroll-spy
+         1. Nav scroll-spy
          Reflects the section currently in view onto its nav link, via
          aria-current so the state is announced as well as painted.
          ================================================================== */
@@ -1677,7 +1517,7 @@
       }
 
       /* ==================================================================
-         3. Reveal on scroll
+         2. Reveal on scroll
          ALL elements — including hero — use the same observer.
          The loader hides the page for 2 s; once it lifts the observer
          fires immediately for whatever is in the viewport, then continues
@@ -1687,7 +1527,7 @@
         var revealTargets = document.querySelectorAll(
           '.site-header, .hero-photo, .hero-text > .eyebrow, .hero-name, ' +
           '.hero-role, .hero-tagline, .hero-actions, .hero-badges, ' +
-          '.section-heading, .section-intro, .metric-card, .timeline-item, ' +
+          '.section-heading, .section-intro, .timeline-item, ' +
           '.skill-card, .education-card, .site-footer'
         );
 
@@ -1731,7 +1571,7 @@
       }
 
       /* ==================================================================
-         4. Scroll progress bar
+         3. Scroll progress bar
          Purely decorative (aria-hidden in the markup) — it is not part of
          the reduced-motion decision because it reports scroll position
          rather than animating for its own sake, like a scrollbar would.
@@ -1764,7 +1604,7 @@
       }
 
       /* ==================================================================
-         5. Apple Loader — dismiss after 2 s, then reveal the page
+         4. Apple Loader — dismiss after 2 s, then reveal the page
          The loader runs its CSS progress bar; at 2 s we add .loaded to
          body, which fades the overlay out (0.8 s CSS transition).
          We also prevent scrolling until the loader dismisses so the
@@ -1776,7 +1616,7 @@
         document.body.style.overflow = '';
       }, 2000);
       /* ==================================================================
-         6. Aesthetic Interactions (Cursor, Spotlight, 3D Cards, Magnetic)
+         5. Aesthetic Interactions (Cursor, Spotlight, 3D Cards, Magnetic)
          ================================================================== */
       if (window.matchMedia('(pointer: fine)').matches && !prefersReduce) {
         /* Inject cursor elements */
@@ -1820,7 +1660,7 @@
         });
 
         /* 3D Tilt for Cards */
-        var tiltCards = document.querySelectorAll('.skill-card, .education-card, .metric-card');
+        var tiltCards = document.querySelectorAll('.skill-card, .education-card');
         each(tiltCards, function(card) {
           card.addEventListener('mousemove', function(e) {
             var rect = card.getBoundingClientRect();
