@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kavya Sakthivel — Manager, Employee Life Cycle @ Zepto</title>
+  <meta name="description" content="Kavya Sakthivel — HR professional based in Bangalore, India, with 3+ years managing the end-to-end employee lifecycle, HRIS automation, people operations and HR documentation.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="icon" type="image/jpeg" href="logo.jpeg">
+
+  <style>
+    /* ==========================================================================
+       1. Design tokens — single source of truth for the whole site.
+          Steps 2-11 never hard-code a colour, radius or shadow.
+       ========================================================================== */
+    :root {
+      /* Palette */
+      --bg:             #F5F5F7;
+      --surface:        rgba(255, 255, 255, 0.7);
+      --surface-glass:  rgba(255, 255, 255, 0.4);
+      --text:           #1D1D1F;
+      --text-muted:     #86868B;
+      --accent:         #0071E3;
+      --accent-strong:  #0077ED;
+      --accent-soft:    rgba(0, 113, 227, 0.1);
+      --border:         rgba(255, 255, 255, 0.5);
+      --border-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+      --on-accent:      #FFFFFF;
+
+      /* Geometry */
+      --radius:         1.5rem;
+      --radius-sm:      1rem;
+      --shadow:         0 8px 32px rgba(0, 0, 0, 0.04);
+      --shadow-lg:      0 24px 48px rgba(0, 0, 0, 0.08);
+      --max-width:      72rem;
+
+      /* Rhythm */
+      --gutter:         1.25rem;
+      --section-y:      clamp(3rem, 2rem + 4vw, 5.5rem);
+
+      /* Motion */
+      --transition:     0.2s ease;
+
+      /* Type */
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      /* Signature face. Deliberately 100% local — no @font-face, no CDN, so the
+         zero-network-request guarantee holds. Resolves to a joined script on
+         macOS/iOS (Snell Roundhand) and Windows (Segoe Script); Android and
+         Linux ship no handwriting face and fall through to `cursive`. */
+      --font-script: "Snell Roundhand", "Savoye LET", "Segoe Script",
+                     "Lucida Handwriting", "Apple Chancery", "Bradley Hand",
+                     "Bradley Hand ITC", "Ink Free", cursive;
+    }
+
+    /* ==========================================================================
+       2. Reset
+       ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      /* Keeps anchor jumps clear of the 4rem sticky header (Step 2) */
+      scroll-padding-top: 5rem;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* ==========================================================================
+       3. Base type + page frame
+       ========================================================================== */
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 0.5em;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    h1 { font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem); }
+    h2 { font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.1rem); }
+    h3 { font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3rem); }
+
+    p {
+      margin: 0 0 1rem;
+      text-wrap: pretty;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      text-decoration: underline;
+    }
+
+    strong { font-weight: 600; }
+
+    /* ==========================================================================
+       4. Layout helper
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ==========================================================================
+       5. Shared accessibility groundwork (inherited by every later step)
+       ========================================================================== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Utility: hidden visually, still announced by screen readers.
+       Reused by the metrics/service headings in Steps 4-7. */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        /* Delay must be reset too: the hero/rail staggers below rely on
+           animation-delay, and without this a reduced-motion user would stare
+           at an invisible element for up to 0.7s. */
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
+    /* ==========================================================================
+       6. Skip link (Step 2) — off-screen until reached by keyboard
+       ========================================================================== */
+    .skip-link {
+      position: absolute;
+      top: 0.75rem;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: var(--on-accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transform: translateY(-300%);
+      transition: transform var(--transition);
+    }
+
+    .skip-link:hover,
+    .skip-link:focus {
+      color: var(--on-accent);
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       7. Sticky site header + primary nav (Step 2)
+          Mobile-first: monogram + CTA only, no hamburger by design.
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 1.25rem;
+      z-index: 50;
+      max-width: calc(var(--max-width) - (var(--gutter) * 2));
+      margin-inline: auto;
+      border-radius: 999px;
+      background-color: var(--surface-glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--border-highlight), var(--shadow);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+    }
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .site-header {
+        background-color: var(--surface);
+      }
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 3.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    .monogram {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      transition: color var(--transition), transform var(--transition);
+    }
+
+    .monogram img {
+      width: 32px;
+      height: 32px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .monogram:hover {
+      color: var(--accent);
+      text-decoration: none;
+      transform: scale(1.06);
+    }
+
+    .nav-links {
+      display: none;
+      gap: 0.25rem;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      /* Smooths the scroll-spy state change as well as hover */
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .nav-links a:hover {
+      background-color: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    /* ==========================================================================
+       8. Buttons — shared by the nav CTA (Step 2) and hero/footer CTAs (Steps 3, 7)
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.15rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: background-color var(--transition), border-color var(--transition),
+                  color var(--transition), transform var(--transition),
+                  background-position 0.45s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: var(--on-accent);
+      box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-strong);
+      color: var(--on-accent);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 113, 227, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-ghost {
+      background-color: var(--surface-glass);
+      border-color: var(--border);
+      color: var(--text);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-ghost:hover {
+      background-color: rgba(255, 255, 255, 0.6);
+      border-color: rgba(255, 255, 255, 0.8);
+      color: var(--text);
+    }
+
+    /* ==========================================================================
+       9. Site footer (Step 2) — holds the gradient .cta-banner (added in
+          Step 7) above .footer-bottom.
+       ========================================================================== */
+    .site-footer {
+      /* Step 7 — the seam: Education's own bottom padding (--section-y) now
+         supplies the gap above the footer, so the Step-2 `margin-top` was
+         removed to stop the two stacking into a double-height gap. `border-top`
+         went with it, because the full-bleed gradient .cta-banner is now the
+         visual separation and a hairline above it would read as a double edge. */
+      background-color: var(--surface);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      padding-block: 1.75rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom p {
+      margin: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      /* WCAG 2.2 SC 2.5.8 — target size (minimum) is 24x24 CSS px. At
+         0.9rem x 1.6 inherited line-height the natural box is 23.04px, a
+         hair under the floor, so min-height lifts it without adding any
+         visible padding. */
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      color: var(--text-muted);
+      font-weight: 500;
+      /* Underline is a background gradient so it can slide in from the left
+         (text-decoration cannot be animated). Painted at the box bottom, which
+         sits <1px below the baseline given the 24px min-height above. */
+      background-image: linear-gradient(currentColor, currentColor);
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      background-size: 0% 1px;
+      transition: background-size var(--transition), color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      background-size: 100% 1px;
+    }
+
+    /* ==========================================================================
+       10. Hero / About (Step 3)
+           Mobile-first single column; photo-left + text-right from 1024px.
+       ========================================================================== */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+      align-items: center;
+      padding-block: var(--section-y);
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      }
+    }
+
+    /* 1:1 square photo frame */
+    .hero-photo {
+      width: 100%;
+      max-width: 24rem;
+      aspect-ratio: 1 / 1;
+      margin-inline: auto;
+      padding: 0;
+      border: none;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-color: var(--accent-soft);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-photo {
+        margin-inline: 0;
+      }
+    }
+
+    /* Floating + halo start only once the photo has revealed */
+    .hero-photo.is-visible {
+      animation: float-soft 6s ease-in-out 0.6s infinite,
+                 halo 4s ease-out 1s infinite;
+    }
+
+    .hero-text > *:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-name {
+      margin-bottom: 0.3em;
+    }
+
+    .hero-role {
+      margin: 0 0 1rem;
+      font-size: clamp(1.05rem, 1rem + 0.6vw, 1.35rem);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      max-width: 46ch;
+      font-size: 1.075rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.75rem 0 1.25rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Pill geometry — shared by .badge (Step 3, neutral) and .pill (Step 6,
+       accent-tinted). Colour differences live in section 14. */
+    .badge,
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background-color: var(--surface);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: transform var(--transition), border-color var(--transition),
+                  background-color var(--transition), color var(--transition);
+    }
+
+    /* ==========================================================================
+       11. Metrics band (Step 4)
+           Markup contract for the Step-9 count-up:
+             .metric-value[data-target]  -> source of the final number
+             .metric-number              -> the only node JS rewrites
+             .metric-suffix              -> never touched, so "+/% " survives
+       ========================================================================== */
+    .metrics {
+      padding-block: clamp(1.25rem, 1rem + 2vw, 2.5rem) var(--section-y);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .metric-card {
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background-color: var(--surface-glass);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--border-highlight), var(--shadow);
+      text-align: center;
+    }
+
+    .metric-value {
+      margin: 0 0 0.35rem;
+      font-size: clamp(2rem, 1.5rem + 2.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      transition: color var(--transition);
+    }
+
+    .metric-suffix {
+      font-size: 0.8em;
+    }
+
+    .metric-label {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       12. Section shell (Step 5) — shared by Experience (5), Skills (6),
+           Education (7). Each section carries ONLY bottom spacing; the previous
+           block's bottom padding supplies the gap above, so rhythm stays uniform.
+       ========================================================================== */
+    .section {
+      padding-block: 0 var(--section-y);
+    }
+
+    .section-heading {
+      margin-bottom: 0.35rem;
+    }
+
+    .section-intro {
+      max-width: 62ch;
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       13. Experience timeline (Step 5) — CSS-only rail + dot markers.
+           Rail and dot share the same centreline (0.35rem, translateX(-50%)),
+           so they stay aligned regardless of stroke or dot size.
+       ========================================================================== */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      left: 0.35rem;
+      width: 2px;
+      transform: translateX(-50%);
+      background-color: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      top: 0.5rem;
+      left: 0.35rem;
+      width: 0.7rem;
+      height: 0.7rem;
+      transform: translateX(-50%);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      background-color: var(--bg);
+      transition: transform var(--transition), border-color var(--transition),
+                  background-color var(--transition);
+    }
+
+    .timeline-item--current::after {
+      background-color: var(--accent);
+    }
+
+    @media (min-width: 768px) {
+      .timeline-item {
+        padding-left: 2rem;
+      }
+    }
+
+    .timeline-role {
+      margin: 0 0 0.15rem;
+      transition: color var(--transition);
+    }
+
+    /* Hovering anywhere on a role row draws the eye to it */
+    .timeline-item:hover .timeline-role {
+      color: var(--accent);
+    }
+
+    .timeline-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: 0.6rem;
+      row-gap: 0.2rem;
+      margin: 0 0 0.85rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-company {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .timeline-dates {
+      white-space: nowrap;
+    }
+
+    .timeline-points {
+      display: grid;
+      gap: 0.4rem;
+      max-width: 68ch;
+      font-size: 0.97rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-points li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .timeline-points li::before {
+      content: "";
+      position: absolute;
+      top: 0.62em;
+      left: 0.15rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      opacity: 0.55;
+      transition: opacity var(--transition);
+    }
+
+    .timeline-item:hover .timeline-points li::before {
+      opacity: 0.95;
+    }
+
+    /* ==========================================================================
+       14. Skills grid (Step 6) — auto-fit reflow, no breakpoints needed.
+           minmax(min(220px, 100%), 1fr) + 1rem gap gives 1 -> 2 -> 3 -> 4
+           columns as the viewport grows and back down again, with no media
+           queries. The min() guard was added in the Step-8 audit so the 220px
+           floor can never force an overflow on ultra-narrow viewports.
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      /* min(220px, 100%) stops the 220px floor from forcing an overflow in
+         viewports narrower than 220px + gutters. The 220px target column is
+         unchanged at every width WCAG 1.4.10 cares about (>= 320px). */
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background-color: var(--surface-glass);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--border-highlight), var(--shadow);
+      transform: perspective(1000px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(var(--lift, 0px));
+      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  border-color var(--transition), box-shadow var(--transition);
+      will-change: transform;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+      --lift: -5px;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* Accent-tinted sibling of .badge — geometry inherited from section 10 */
+    .pill {
+      border-color: transparent;
+      background-color: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .skill-card:hover .pill {
+      border-color: rgb(79 70 229 / 0.25);
+    }
+
+    /* ==========================================================================
+       15. Education, connect anchor + footer CTA banner (Step 7)
+       ========================================================================== */
+    .education-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .education-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .education-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background-color: var(--surface-glass);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--border-highlight), var(--shadow);
+    }
+
+    .education-degree {
+      margin-bottom: 0.35rem;
+    }
+
+    .education-institution {
+      margin: 0 0 0.15rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .education-year {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Scroll target for the nav "Contact" CTA — the div was placed in Step 2,
+       styled here. The explicit scroll-margin keeps the landing clear of the
+       sticky header even if the global scroll-padding is ever removed. */
+    .connect-anchor {
+      scroll-margin-top: 5rem;
+    }
+
+    /* Full-bleed gradient band, first child of the footer.
+       background-size > 100% makes the slow drift visible instead of
+       imperceptible. */
+    .cta-banner {
+      background-image: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      background-size: 180% 180%;
+      color: var(--on-accent);
+      padding-block: clamp(2.5rem, 2rem + 3vw, 4rem);
+      animation: gradient-drift 14s ease-in-out infinite;
+    }
+
+    .cta-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem 2rem;
+    }
+
+    .cta-copy {
+      max-width: 52ch;
+    }
+
+    .cta-title {
+      margin-bottom: 0.35rem;
+      color: var(--on-accent);
+    }
+
+    .cta-copy p {
+      margin: 0;
+      color: rgb(255 255 255 / 0.85);
+    }
+
+    /* White button for use on the gradient */
+    .btn-inverse {
+      background-color: var(--surface);
+      border-color: transparent;
+      color: var(--accent-strong);
+    }
+
+    .btn-inverse:hover {
+      background-color: var(--accent-soft);
+      color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       16. Interaction states driven by the Step-9 script
+           Nothing here is load-bearing for content: with JS disabled there is
+           simply no active nav link, and every card is fully visible.
+       ========================================================================== */
+
+    /* Scroll-spy state. Keyed off aria-current (not a class) so the active
+       section is exposed to assistive tech, not just painted. */
+    .nav-links a[aria-current="true"] {
+      background-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Reveal-on-scroll uses `animation` rather than `transition` on purpose:
+       .skill-card already owns a `transition` for its hover state, and a
+       second transition declaration at equal specificity would clobber it. */
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Applied by JS only — so pre-JS and no-JS rendering is never hidden. */
+    .reveal {
+      opacity: 0;
+    }
+
+    /* `backwards` fill plus an explicit opacity:1 is deliberate.
+       With `both`, the forwards fill holds opacity:1 AND `transform: none` at
+       animation priority after the reveal finishes — and animation
+       declarations outrank :hover, so the forwards fill was silently
+       suppressing every hover lift on a revealed card. `backwards` still
+       covers the stagger delay, then hands transform back to the stylesheet. */
+    .reveal.is-visible {
+      opacity: 1;
+      animation: reveal-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    /* ==========================================================================
+       17. Motion layer — pacing and retention polish.
+           Same contract as section 16:
+             - the hero entrance is CSS-only, so it cannot hide anything if JS
+               fails (a failed animation simply leaves the element at its
+               natural, visible state);
+             - every JS-driven offset state (rail, dots) is applied BY the
+               script, so JS-off renders the finished, static design;
+             - the reduced-motion block resets both duration and delay.
+       ========================================================================== */
+
+    /* --- Scroll progress bar — fixed at top of viewport, independent of nav pill */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 99998;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      background-image: linear-gradient(90deg, var(--accent), var(--accent-strong));
+      will-change: transform;
+    }
+
+    /* --- Hero entrance: staggered, no JS required -------------------------- */
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .hero-text > .eyebrow,
+    .hero-role,
+    .hero-tagline,
+    .hero-actions,
+    .hero-badges {
+      animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    }
+
+    /* .hero-name is deliberately NOT in the list above: its letters animate
+       individually (section 20), and fading the whole h1 at the same time
+       would compound the two opacities and make the first letters read dim. */
+
+    /* The portrait keeps breathing after it lands: a float (transform) and a
+       halo (box-shadow). float-soft is declared AFTER rise-in so it takes
+       over the transform property once the 0.6s entrance has elapsed. */
+    @keyframes float-soft {
+      0%,
+      100% { transform: translateY(0); }
+      50%  { transform: translateY(-6px); }
+    }
+
+    @keyframes halo {
+      0%,
+      100% { box-shadow: 0 0 0 0 rgb(79 70 229 / 0.20); }
+      50%  { box-shadow: 0 0 0 12px rgb(79 70 229 / 0); }
+    }
+
+
+
+    /* --- Timeline: the rail draws down, then the dots pop ------------------ */
+    @keyframes draw-rail {
+      from { transform: translateX(-50%) scaleY(0); }
+      to   { transform: translateX(-50%) scaleY(1); }
+    }
+
+    @keyframes dot-pop {
+      from {
+        transform: translateX(-50%) scale(0.2);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Hidden state is added by JS only, so it never exists without it */
+    .timeline.reveal-rail::before {
+      transform: translateX(-50%) scaleY(0);
+    }
+
+    .timeline.reveal-rail.is-visible::before {
+      animation: draw-rail 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+    }
+
+    /* `backwards`, not `both`: dot-pop's end state is identical to the dot's
+       natural state, so forwards-filling it would only serve to lock
+       `transform` and block the hover scale in section 19. */
+    .timeline-item.is-visible::after {
+      animation: dot-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
+    }
+
+    /* --- Interactive lifts ------------------------------------------------- */
+    .metric-card,
+    .education-card {
+      transform: perspective(1000px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(var(--lift, 0px));
+      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow var(--transition),
+                  border-color var(--transition);
+      will-change: transform;
+    }
+
+    .metric-card:hover,
+    .education-card:hover {
+      --lift: -5px;
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* --- Slow gradient drift on the footer band --------------------------- */
+    @keyframes gradient-drift {
+      0%,
+      100% { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+    }
+
+    /* ==========================================================================
+       19. Ambient + hover layer — the quiet end of the motion system.
+           Every offset here is 1–3px or a colour shift inside the existing
+           token palette. Contrast was re-checked for each state, including
+           the mid-sheen button, which is the tightest case at 4.65:1.
+       ========================================================================== */
+
+    /* --- Ambient background wash ------------------------------------------
+       A fixed, non-interactive layer behind everything. z-index:-1 paints it
+       above the canvas background (body's background propagates to the canvas)
+       yet below all in-flow content — the alternative, z-index:0, would cover
+       the text. Only `transform` animates, so this stays on the compositor
+       instead of repainting a viewport-sized gradient every frame. The drift
+       is capped at 6% / 5% opacity: worst-case body-text contrast on the
+       tinted ground is 5.44:1, still comfortably AA. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -15vmax;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(45vmax 45vmax at var(--mouse-x, 30%) var(--mouse-y, 30%), rgba(255, 41, 117, 0.15), transparent 60%),
+        radial-gradient(55vmax 55vmax at calc(100% - var(--mouse-x, 70%)) calc(100% - var(--mouse-y, 70%)), rgba(0, 198, 255, 0.18), transparent 60%),
+        radial-gradient(60vmax 60vmax at 80% 20%, rgba(138, 43, 226, 0.15), transparent 60%),
+        radial-gradient(50vmax 50vmax at 20% 80%, rgba(0, 113, 227, 0.15), transparent 60%);
+      will-change: background-image;
+      filter: blur(40px);
+    }
+
+    /* --- Custom Cursor Styles ---------------------------------------------- */
+    @media (pointer: fine) {
+      body.has-custom-cursor, 
+      body.has-custom-cursor a, 
+      body.has-custom-cursor button, 
+      body.has-custom-cursor .btn {
+        cursor: none;
+      }
+      
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        will-change: transform;
+      }
+
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--accent);
+      }
+
+      .cursor-ring {
+        width: 32px;
+        height: 32px;
+        border: 2px solid var(--accent);
+        background-color: rgb(79 70 229 / 0.05);
+        transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      }
+      
+      .cursor-ring.is-hovering {
+        width: 48px;
+        height: 48px;
+        background-color: rgb(79 70 229 / 0.15);
+        border-color: rgb(79 70 229 / 0.3);
+      }
+    }
+
+    /* --- Section heading accent rule --------------------------------------
+       Present and static by default, so it still exists with JS off; it only
+       *animates* once the heading is revealed. `backwards` fill releases the
+       transform on completion, so nothing stays locked. */
+    @keyframes rule-draw {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .section-heading::after {
+      content: "";
+      display: block;
+      width: 2.75rem;
+      height: 3px;
+      margin-top: 0.6rem;
+      border-radius: 999px;
+      background-color: var(--accent);
+      transform-origin: 0 50%;
+    }
+
+    .section-heading.is-visible::after {
+      animation: rule-draw 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+    }
+
+    /* --- Button sheen ------------------------------------------------------
+       Driven by background-position rather than a pseudo-element overlay, so it
+       can never sit on top of or obscure the label. Peak highlight is only 15%
+       white: at 28% the primary button's label would dip to 3.55:1 mid-sweep,
+       below AA for 15px bold text. 15% keeps it at 4.65:1. */
+    .btn-primary,
+    .btn-inverse {
+      background-repeat: no-repeat;
+      background-size: 260% 100%;
+      background-position: 130% 0;
+    }
+
+    .btn-primary {
+      background-image: linear-gradient(110deg, transparent 32%,
+        rgb(255 255 255 / 0.15) 50%, transparent 68%);
+    }
+
+    .btn-inverse {
+      background-image: linear-gradient(110deg, transparent 32%,
+        rgb(79 70 229 / 0.14) 50%, transparent 68%);
+    }
+
+    .btn-primary:hover,
+    .btn-inverse:hover {
+      background-position: -30% 0;
+    }
+
+    /* --- Chips: 1px lift and an accent hairline --------------------------- */
+    .badge:hover,
+    .pill:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* --- Metric numeral deepens as its card lifts ------------------------- */
+    .metric-card:hover .metric-value {
+      color: var(--accent-strong);
+    }
+
+    /* --- Timeline row hover: dot fills and swells, bullets brighten ------- */
+    .timeline-item:hover::after {
+      transform: translateX(-50%) scale(1.18);
+      border-color: var(--accent);
+      background-color: var(--accent);
+    }
+
+    /* ==========================================================================
+       20. Signature name — handwriting face + letter-by-letter reveal.
+           Two constraints shaped this:
+
+           1. The face is LOCAL-ONLY (see --font-script). Reaching for a webfont
+              would add a render-blocking third-party request and break the
+              zero-network-request guarantee every step has held.
+
+           2. Any per-letter split destroys kerning across the split points, so
+              each letter is kept `display: inline` (NOT inline-block) and only
+              `opacity` is animated. inline-block would clip each glyph to its
+              own box — fatal for a script face with long swashes — and buys
+              nothing when the only animated property is opacity.
+       ========================================================================== */
+    .hero-name {
+      font-family: var(--font-script);
+      /* Script faces carry long ascenders/descenders and a small x-height, so
+         they read smaller than the sans at the same size: this runs larger,
+         and line-height opens up to keep the descenders off the role line. */
+      font-size: clamp(2.5rem, 1.6rem + 4.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.15em;
+    }
+
+    /* ==========================================================================
+       21. Apple Style Loader
+       ========================================================================== */
+    #apple-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background-color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loader-logo {
+      width: 88px;
+      height: 88px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 24px;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .loader-track {
+      width: 140px;
+      height: 4px;
+      background-color: rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .loader-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--text);
+      border-radius: 4px;
+      animation: mac-boot 1.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    }
+
+    @keyframes mac-boot {
+      0% { width: 0%; }
+      20% { width: 15%; }
+      60% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    body.loaded #apple-loader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* ==== end of styles ==== */
+  </style>
+</head>
+
+<body>
+  <!-- Apple-style loading screen -->
+  <div id="apple-loader" aria-hidden="true">
+    <img class="loader-logo" src="logo.jpeg" alt="" width="768" height="768" fetchpriority="high">
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="container site-nav" aria-label="Primary">
+      <a class="monogram" href="#main"><img src="logo.jpeg" alt="KS logo" width="768" height="768"><span>KS.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+      </ul>
+
+      <a class="btn btn-primary" href="#connect">Contact</a>
+    </nav>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <main id="main" class="container">
+    <!-- All five sections are present as of Step 7:
+         #about, #metrics, #experience, #skills, #education -->
+    <section id="about" class="hero" aria-labelledby="hero-name">
+      <div class="hero-photo">
+        <img src="profile.jpeg" alt="Portrait of Kavya Sakthivel" width="896" height="896" fetchpriority="high">
+      </div>
+
+      <div class="hero-text">
+        <p class="eyebrow">Hello, I'm</p>
+        <h1 id="hero-name" class="hero-name">Kavya Sakthivel</h1>
+        <p class="hero-role">Manager, Employee Life Cycle @ Zepto</p>
+
+        <!-- Copy condensed from the PROFESSIONAL SUMMARY in resume.md -->
+        <p class="hero-tagline">
+          HR professional with 3+ years owning the end-to-end employee lifecycle — onboarding
+          through offboarding — with a focus on HR tooling and automation, HR data integrity,
+          and the experience employees actually have.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:kavyasakthivel3@gmail.com">Email me</a>
+          <!-- COPY: resume.md lists LinkedIn as "#" — supply the real profile URL -->
+          <a class="btn btn-ghost" href="#" data-placeholder="linkedin">LinkedIn</a>
+        </div>
+
+        <ul class="hero-badges">
+          <li class="badge">Bangalore, India</li>
+          <li class="badge">Employee Life Cycle</li>
+          <li class="badge">HR Automation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="metrics" class="metrics" aria-labelledby="metrics-title">
+      <h2 id="metrics-title" class="visually-hidden">Career highlights</h2>
+
+      <ul class="metrics-grid">
+        <li class="metric-card">
+          <!-- "over 3+ years" — resume.md professional summary -->
+          <p class="metric-value" data-target="3">
+            <span class="metric-number">3</span><span class="metric-suffix">+</span>
+          </p>
+          <p class="metric-label">Years managing the employee life cycle</p>
+        </li>
+
+        <li class="metric-card">
+          <!-- "closing 88% of job openings for the critical Technical Support Role within one month" -->
+          <p class="metric-value" data-target="88">
+            <span class="metric-number">88</span><span class="metric-suffix">%</span>
+          </p>
+          <p class="metric-label">Technical Support roles filled within a month</p>
+        </li>
+
+        <li class="metric-card">
+          <!-- "closing candidates with a 93% offer acceptance rate" -->
+          <p class="metric-value" data-target="93">
+            <span class="metric-number">93</span><span class="metric-suffix">%</span>
+          </p>
+          <p class="metric-label">Offer acceptance rate</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="experience-title">
+      <h2 id="experience-title" class="section-heading">Experience</h2>
+      <p class="section-intro">
+        End-to-end employee lifecycle ownership across fintech, enterprise software and
+        recruitment — most recent first.
+      </p>
+
+      <ol class="timeline">
+        <!-- ⚠️ Zepto is NOT in resume.md. The title/role above came from your own site spec.
+             Confirm the date range and replace the three bullets, or delete this whole block. -->
+        <li class="timeline-item timeline-item--current">
+          <h3 class="timeline-role">Manager, Employee Life Cycle</h3>
+          <p class="timeline-meta">
+            <span class="timeline-company">Zepto</span>
+            <span class="timeline-dates">2025 – Present</span>
+            <span class="badge">Current</span>
+          </p>
+          <!-- COPY: add your Zepto responsibilities here -->
+          <ul class="timeline-points">
+            <li>Placeholder — the scope you own at Zepto: team, process or system.</li>
+            <li>Placeholder — one measurable outcome.</li>
+            <li>Placeholder — a tool or cross-functional partner involved.</li>
+          </ul>
+        </li>
+
+        <li class="timeline-item">
+          <h3 class="timeline-role">Senior Associate, People Operations</h3>
+          <p class="timeline-meta">
+            <span class="timeline-company">CredAvenue (Yubi)</span>
+            <span class="timeline-dates">Aug 2022 – Sep 2025</span>
+          </p>
+          <ul class="timeline-points">
+            <li>Managed the complete employee life cycle end to end — Day 1 onboarding, internal
+              movements, engagement and final exit. Joined as an HR Consultant; promoted to Senior
+              Associate in October 2023.</li>
+            <li>Spearheaded the end-to-end onboarding process, optimising it to improve the new-hire
+              experience, and ran background verification (BGV) for all new hires to strict
+              compliance standards.</li>
+            <li>Served as tool automation expert across the Zoho suite (People Plus, Recruit, Sign)
+              and implemented Oracle HRMS, driving HR portal development that reduced manual effort
+              and improved self-service.</li>
+            <li>Provided payroll coordination inputs, owned end-to-end employee query redressal, and
+              maintained HRIS data quality through rigorous validation.</li>
+            <li>Led internal and external HR audits and authored the documentation set — employee
+              handbooks, policy documents, job aids and SOPs — plus weekly and monthly engagement
+              programmes.</li>
+          </ul>
+        </li>
+
+        <li class="timeline-item">
+          <h3 class="timeline-role">HR Intern — Talent Acquisition &amp; Labour Laws</h3>
+          <p class="timeline-meta">
+            <span class="timeline-company">Zoho Corporation</span>
+            <span class="timeline-dates">Mar 2022 – Jul 2022</span>
+          </p>
+          <ul class="timeline-points">
+            <li>Ran the end-to-end recruitment life cycle from job requisition and sourcing through
+              offer and onboarding.</li>
+            <li>Closed 88% of Technical Support openings within one month of posting, and reached a
+              93% offer acceptance rate.</li>
+            <li>Sourced and engaged 30–40 candidates per week and coordinated 9 on-campus interviews
+              and assessment centres.</li>
+            <li>Maintained recruitment data and monthly reporting in Zoho Recruit ATS, and supported
+              the HR Operations team in creating new company policies.</li>
+          </ul>
+        </li>
+
+        <li class="timeline-item">
+          <h3 class="timeline-role">HR Intern — Operations</h3>
+          <p class="timeline-meta">
+            <span class="timeline-company">Hofars</span>
+            <span class="timeline-dates">Jul 2021 – Aug 2021</span>
+          </p>
+          <ul class="timeline-points">
+            <li>Partnered with department heads to determine hiring needs and drafted standard job
+              descriptions.</li>
+            <li>Handled 3 job openings per month across departments including Technology and Sales.</li>
+            <li>Reviewed at least 5 candidates weekly, progressing an average of 4 to interview, and
+              filled 78% of available openings within a month.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="section-heading">Skills</h2>
+      <p class="section-intro">Core strengths and the systems I work in.</p>
+
+      <ul class="skills-grid">
+        <li class="skill-card">
+          <h3>Employee Life Cycle</h3>
+          <ul class="pill-list">
+            <li class="pill">Onboarding &amp; orientation</li>
+            <li class="pill">Life cycle planning &amp; development</li>
+            <li class="pill">Internal movements</li>
+            <li class="pill">Exit management</li>
+          </ul>
+        </li>
+
+        <li class="skill-card">
+          <h3>People Operations</h3>
+          <ul class="pill-list">
+            <li class="pill">Payroll coordination</li>
+            <li class="pill">Background verification (BGV)</li>
+            <li class="pill">Employee query redressal</li>
+            <li class="pill">HR audits &amp; compliance</li>
+          </ul>
+        </li>
+
+        <li class="skill-card">
+          <h3>Talent Acquisition</h3>
+          <ul class="pill-list">
+            <li class="pill">End-to-end recruitment</li>
+            <li class="pill">Candidate sourcing</li>
+            <li class="pill">Offer management</li>
+            <li class="pill">On-campus hiring</li>
+          </ul>
+        </li>
+
+        <li class="skill-card">
+          <h3>HR Systems &amp; Tools</h3>
+          <ul class="pill-list">
+            <li class="pill">Zoho People Plus</li>
+            <li class="pill">Zoho Recruit</li>
+            <li class="pill">Zoho Sign</li>
+            <li class="pill">Oracle HRMS</li>
+            <li class="pill">HRIS automation</li>
+            <li class="pill">HR portal development</li>
+          </ul>
+        </li>
+
+        <li class="skill-card">
+          <h3>HR Documentation</h3>
+          <ul class="pill-list">
+            <li class="pill">Employee handbooks</li>
+            <li class="pill">Policy documents</li>
+            <li class="pill">Standard operating procedures</li>
+            <li class="pill">Job aids</li>
+          </ul>
+        </li>
+
+        <li class="skill-card">
+          <h3>Strengths &amp; Leadership</h3>
+          <ul class="pill-list">
+            <li class="pill">Project coordination</li>
+            <li class="pill">Performance management</li>
+            <li class="pill">Employee engagement</li>
+            <li class="pill">Team leadership</li>
+            <li class="pill">Communication</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education" class="section" aria-labelledby="education-title">
+      <h2 id="education-title" class="section-heading">Education</h2>
+      <p class="section-intro">Academic foundation in human resources and business.</p>
+
+      <ul class="education-grid">
+        <li class="education-card">
+          <h3 class="education-degree">MBA — Human Resource &amp; Marketing</h3>
+          <p class="education-institution">Rajalakshmi Engineering College</p>
+          <p class="education-year">Chennai · Graduated April 2022</p>
+        </li>
+
+        <li class="education-card">
+          <h3 class="education-degree">BBA — Bachelor of Business Administration</h3>
+          <p class="education-institution">Shasun Jain College</p>
+          <p class="education-year">Chennai · Graduated May 2020</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="connect-anchor" id="connect"></div>
+  </main>
+
+  <footer class="site-footer">
+    <section class="cta-banner" aria-labelledby="cta-title">
+      <div class="container cta-inner">
+        <div class="cta-copy">
+          <h2 id="cta-title" class="cta-title">Let's talk employee experience</h2>
+          <p>Open to conversations about the employee life cycle, people operations and HR automation.</p>
+        </div>
+
+        <a class="btn btn-inverse" href="mailto:kavyasakthivel3@gmail.com">Get in touch</a>
+      </div>
+    </section>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Kavya Sakthivel. All rights reserved.</p>
+
+      <ul class="footer-links">
+        <li><a href="mailto:kavyasakthivel3@gmail.com">Email</a></li>
+        <!-- COPY: resume.md lists LinkedIn as "#" — supply the real profile URL -->
+        <li><a href="#" data-placeholder="linkedin">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var supportsIO = 'IntersectionObserver' in window;
+      var prefersReduce = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        : false;
+
+      function each(nodes, fn) {
+        Array.prototype.forEach.call(nodes, fn);
+      }
+
+      /* ==================================================================
+         1. Metric count-up
+         Contract fixed in Step 4:
+           .metric-value[data-target] -> source of the final number
+           .metric-number             -> the ONLY node rewritten here
+           .metric-suffix             -> never referenced, so "+" and "%"
+                                         always survive the animation.
+         ================================================================== */
+      var metrics = document.querySelectorAll('.metric-value[data-target]');
+
+      function finalValue(el) {
+        var number = el.querySelector('.metric-number');
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (number && !isNaN(target)) {
+          number.textContent = String(target);
+        }
+      }
+
+      function countUp(el) {
+        var number = el.querySelector('.metric-number');
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        if (!number || isNaN(target)) {
+          return;
+        }
+
+        var DURATION = 1100;
+        var started = null;
+
+        function frame(now) {
+          if (started === null) {
+            started = now;
+          }
+          var progress = Math.min((now - started) / DURATION, 1);
+          var eased = 1 - Math.pow(1 - progress, 3); /* easeOutCubic */
+          number.textContent = String(Math.round(target * eased));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            number.textContent = String(target); /* land on the exact value */
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }
+
+      if (metrics.length) {
+        if (prefersReduce || !supportsIO || !window.requestAnimationFrame) {
+          each(metrics, finalValue);
+        } else {
+          window.setTimeout(function () {
+            var metricObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  countUp(entry.target);
+                  metricObserver.unobserve(entry.target); /* once only */
+                }
+              });
+            }, { threshold: 0.4 });
+
+            each(metrics, function (el) {
+              metricObserver.observe(el);
+            });
+          }, 2100);
+        }
+      }
+
+      /* ==================================================================
+         2. Nav scroll-spy
+         Reflects the section currently in view onto its nav link, via
+         aria-current so the state is announced as well as painted.
+         ================================================================== */
+      var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      var pairs = [];
+
+      each(navLinks, function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var section = document.getElementById(id);
+        if (section) {
+          pairs.push({ link: link, section: section });
+        }
+      });
+
+      function markActive(active) {
+        each(navLinks, function (link) {
+          if (link === active) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      if (pairs.length && supportsIO) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) {
+              return;
+            }
+            for (var i = 0; i < pairs.length; i++) {
+              if (pairs[i].section === entry.target) {
+                markActive(pairs[i].link);
+                break;
+              }
+            }
+          });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+
+        pairs.forEach(function (pair) {
+          spy.observe(pair.section);
+        });
+      }
+
+      /* ==================================================================
+         3. Reveal on scroll
+         ALL elements — including hero — use the same observer.
+         The loader hides the page for 2 s; once it lifts the observer
+         fires immediately for whatever is in the viewport, then continues
+         to fire as the user scrolls. No hard-coded delays anywhere.
+         ================================================================== */
+      if (!prefersReduce && supportsIO) {
+        var revealTargets = document.querySelectorAll(
+          '.site-header, .hero-photo, .hero-text > .eyebrow, .hero-name, ' +
+          '.hero-role, .hero-tagline, .hero-actions, .hero-badges, ' +
+          '.section-heading, .section-intro, .metric-card, .timeline-item, ' +
+          '.skill-card, .education-card, .site-footer'
+        );
+
+        var rails = document.querySelectorAll('.timeline');
+
+        var staggerIndex = function (el) {
+          var kids = el.parentElement ? el.parentElement.children : [];
+          for (var i = 0; i < kids.length; i++) {
+            if (kids[i] === el) { return i; }
+          }
+          return 0;
+        };
+
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              /* Gentle stagger: siblings fan out by up to 300 ms */
+              entry.target.style.animationDelay =
+                (Math.min(staggerIndex(entry.target), 5) * 60) + 'ms';
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+        each(revealTargets, function (el) {
+          el.classList.add('reveal');
+          revealObserver.observe(el);
+        });
+
+        each(rails, function (el) {
+          el.classList.add('reveal-rail');
+          revealObserver.observe(el);
+        });
+
+        /* Safety net */
+        window.setTimeout(function () {
+          each(revealTargets, function (el) { el.classList.add('is-visible'); });
+          each(rails,         function (el) { el.classList.add('is-visible'); });
+        }, 10000);
+      }
+
+      /* ==================================================================
+         4. Scroll progress bar
+         Purely decorative (aria-hidden in the markup) — it is not part of
+         the reduced-motion decision because it reports scroll position
+         rather than animating for its own sake, like a scrollbar would.
+         Reads are rAF-throttled so a fast scroll can't queue up layout work.
+         ================================================================== */
+      var progressBar = document.querySelector('.scroll-progress');
+
+      if (progressBar) {
+        var progressQueued = false;
+
+        var paintProgress = function () {
+          var doc = document.documentElement;
+          var max = doc.scrollHeight - window.innerHeight;
+          var ratio = max > 0 ? (window.pageYOffset || doc.scrollTop) / max : 0;
+          progressBar.style.transform =
+            'scaleX(' + Math.min(Math.max(ratio, 0), 1).toFixed(4) + ')';
+          progressQueued = false;
+        };
+
+        var requestProgress = function () {
+          if (!progressQueued) {
+            progressQueued = true;
+            window.requestAnimationFrame(paintProgress);
+          }
+        };
+
+        window.addEventListener('scroll', requestProgress, { passive: true });
+        window.addEventListener('resize', requestProgress, { passive: true });
+        paintProgress();
+      }
+
+      /* ==================================================================
+         5. Apple Loader — dismiss after 2 s, then reveal the page
+         The loader runs its CSS progress bar; at 2 s we add .loaded to
+         body, which fades the overlay out (0.8 s CSS transition).
+         We also prevent scrolling until the loader dismisses so the
+         IntersectionObserver correctly fires for the hero on load.
+         ================================================================== */
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.style.overflow = '';
+      }, 2000);
+      /* ==================================================================
+         6. Aesthetic Interactions (Cursor, Spotlight, 3D Cards, Magnetic)
+         ================================================================== */
+      if (window.matchMedia('(pointer: fine)').matches && !prefersReduce) {
+        /* Inject cursor elements */
+        var cursorDot = document.createElement('div');
+        var cursorRing = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        cursorRing.className = 'cursor-ring';
+        document.body.appendChild(cursorDot);
+        document.body.appendChild(cursorRing);
+        document.body.classList.add('has-custom-cursor');
+
+        var mouseX = window.innerWidth / 2;
+        var mouseY = window.innerHeight / 2;
+        var dotX = mouseX;
+        var dotY = mouseY;
+        var ringX = mouseX;
+        var ringY = mouseY;
+        var cursorVisible = false;
+        cursorDot.style.opacity = '0';
+        cursorRing.style.opacity = '0';
+
+        /* Interactive elements for cursor expansion */
+        var interactives = document.querySelectorAll('a, button, .btn');
+        each(interactives, function (el) {
+          el.addEventListener('mouseenter', function() { cursorRing.classList.add('is-hovering'); });
+          el.addEventListener('mouseleave', function() { cursorRing.classList.remove('is-hovering'); });
+        });
+
+        /* Magnetic Buttons */
+        var magneticBtns = document.querySelectorAll('.btn');
+        each(magneticBtns, function(btn) {
+          btn.addEventListener('mousemove', function(e) {
+            var rect = btn.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = 'translate(' + (x * 0.3) + 'px, ' + (y * 0.3) + 'px)';
+          });
+          btn.addEventListener('mouseleave', function() {
+            btn.style.transform = '';
+          });
+        });
+
+        /* 3D Tilt for Cards */
+        var tiltCards = document.querySelectorAll('.skill-card, .education-card, .metric-card');
+        each(tiltCards, function(card) {
+          card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+            var tiltX = ((x - centerX) / centerX) * 8; /* Max 8deg tilt */
+            var tiltY = ((centerY - y) / centerY) * 8;
+            card.style.setProperty('--tilt-x', tiltX + 'deg');
+            card.style.setProperty('--tilt-y', tiltY + 'deg');
+          });
+          card.addEventListener('mouseleave', function() {
+            card.style.setProperty('--tilt-x', '0deg');
+            card.style.setProperty('--tilt-y', '0deg');
+          });
+        });
+
+        /* Track mouse globally */
+        window.addEventListener('mousemove', function (e) {
+          if (!cursorVisible) {
+            cursorVisible = true;
+            cursorDot.style.opacity = '1';
+            cursorRing.style.opacity = '1';
+          }
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          
+          /* Update Spotlight Background */
+          var xPercent = (mouseX / window.innerWidth) * 100;
+          var yPercent = (mouseY / window.innerHeight) * 100;
+          document.body.style.setProperty('--mouse-x', xPercent + '%');
+          document.body.style.setProperty('--mouse-y', yPercent + '%');
+        });
+
+        /* Smooth animate cursor */
+        function renderCursor() {
+          /* High lerp = snappy. Dot is near-instant, ring has a tight trail */
+          dotX += (mouseX - dotX) * 0.9;
+          dotY += (mouseY - dotY) * 0.9;
+          ringX += (mouseX - ringX) * 0.35;
+          ringY += (mouseY - ringY) * 0.35;
+
+          cursorDot.style.transform = 'translate(' + dotX + 'px, ' + dotY + 'px) translate(-50%, -50%)';
+          cursorRing.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px) translate(-50%, -50%)';
+
+          window.requestAnimationFrame(renderCursor);
+        }
+        window.requestAnimationFrame(renderCursor);
+      }
+    })();
+  </script>
+</body>
+</html>
